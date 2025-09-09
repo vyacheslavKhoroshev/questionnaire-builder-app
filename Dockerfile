@@ -15,7 +15,7 @@ COPY . .
 
 RUN npm run packages:build || true
 
-RUN npm run build -w apps/backend
+RUN npm run build -w apps/backend && npm run build -w apps/frontend
 
 
 FROM node:20-alpine AS runner
@@ -27,6 +27,7 @@ COPY package.json package-lock.json ./
 COPY --from=builder /app/apps/backend/dist ./apps/backend/dist
 COPY --from=builder /app/apps/backend/package.json ./apps/backend/package.json
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/frontend/dist ./apps/frontend/dist
 
 RUN npm prune --omit=dev
 

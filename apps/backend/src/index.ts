@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'node:path';
 import cors from 'cors';
 import { checkDatabaseConnection, kx } from './db';
 import { config } from './libs/modules/config/config';
@@ -29,6 +30,15 @@ app.get('/samples', async (_req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Failed to load samples' });
   }
+});
+
+// Serve frontend static build
+const frontendDist = path.resolve(process.cwd(), 'apps/frontend/dist');
+app.use(express.static(frontendDist));
+
+// SPA fallback to index.html
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(frontendDist, 'index.html'));
 });
 
 app.listen(PORT, () => {
