@@ -5,6 +5,7 @@ type EnvironmentSchema = {
     ENVIRONMENT: AppEnvironment;
     HOST: string;
     PORT: number;
+    CORS_ORIGINS?: string;
   };
   DB: {
     URL: string;

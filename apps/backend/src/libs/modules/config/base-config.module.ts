@@ -1,6 +1,7 @@
 import { config as loadEnv } from 'dotenv';
 import type { EnvironmentSchema } from './libs/types/environment-schema.type';
 import type { AppEnvironment } from './libs/types/app-environment.type';
+import { config } from './config';
 
 class BaseConfig {
   public readonly ENV: EnvironmentSchema;
@@ -13,6 +14,7 @@ class BaseConfig {
     const APP_ENVIRONMENT = (env.NODE_ENV ?? 'development') as AppEnvironment;
     const APP_HOST = env.HOST ?? 'localhost';
     const APP_PORT = Number(env.PORT ?? 3001);
+    const APP_CORS_ORIGINS = env.CORS_ORIGINS ?? '';
 
     const DATABASE_URL = env.DATABASE_URL ?? '';
     const DB_POOL_MIN = Number(env.DB_POOL_MIN ?? 0);
@@ -23,6 +25,7 @@ class BaseConfig {
         ENVIRONMENT: APP_ENVIRONMENT,
         HOST: APP_HOST,
         PORT: APP_PORT,
+        CORS_ORIGINS: APP_CORS_ORIGINS,
       },
       DB: {
         URL: DATABASE_URL,

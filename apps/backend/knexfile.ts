@@ -1,7 +1,8 @@
 import 'dotenv/config';
 import type { Knex } from 'knex';
+import { config as baseConfig } from './src/libs/modules/config/config';
 
-const connection = process.env.DATABASE_URL ?? '';
+const connection = baseConfig.ENV.DB.URL;
 
 const config: { [key: string]: Knex.Config } = {
   development: {

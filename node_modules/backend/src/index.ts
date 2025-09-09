@@ -1,14 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import { checkDatabaseConnection, kx } from './db';
+import { config } from './libs/modules/config/config';
 
 const app = express();
-const corsOrigins = process.env.CORS_ORIGINS?.split(',')
+const corsOriginsRaw = config.ENV.APP.CORS_ORIGINS ?? '';
+const corsOrigins = corsOriginsRaw
+  .split(',')
   .map((s) => s.trim())
   .filter(Boolean);
-app.use(corsOrigins && corsOrigins.length > 0 ? cors({ origin: corsOrigins }) : cors());
+app.use(corsOrigins.length > 0 ? cors({ origin: corsOrigins }) : cors());
 app.use(express.json());
-const PORT = Number(process.env.PORT);
+const PORT = Number(config.ENV.APP.PORT);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });

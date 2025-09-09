@@ -2,13 +2,14 @@ import 'dotenv/config';
 import knex, { Knex } from 'knex';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { config } from '~/libs/modules/config/config';
 
 async function run(): Promise<void> {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const cfg: Knex.Config = {
     client: 'pg',
-    connection: process.env.DATABASE_URL as string,
+    connection: config.ENV.DB.URL,
     migrations: {
       directory: path.resolve(__dirname, '../migrations'),
     },
