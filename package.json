@@ -12,7 +12,11 @@
     "dev:backend": "npm run dev -w apps/backend",
     "dev:frontend": "npm run dev -w apps/frontend",
     "build": "npm -ws run build",
-    "start": "npm run start -w apps/backend"
+    "start": "npm run start -w apps/backend",
+    "db:migrate": "npm run db:migrate -w apps/backend",
+    "db:rollback": "npm run db:rollback -w apps/backend",
+    "db:seed": "npm run db:seed -w apps/backend",
+    "packages:build": "tsc -p packages/tsconfig.json"
   },
   "devDependencies": {
     "typescript": "5.5.4"

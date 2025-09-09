@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { checkDatabaseConnection } from './db';
+import { checkDatabaseConnection, kx } from './db';
 
 const app = express();
 const corsOrigins = process.env.CORS_ORIGINS?.split(',')
@@ -17,6 +17,15 @@ app.get('/health', (_req, res) => {
 app.get('/db/health', async (_req, res) => {
   const ok = await checkDatabaseConnection();
   res.status(ok ? 200 : 503).json({ database: ok ? 'up' : 'down' });
+});
+
+app.get('/samples', async (_req, res) => {
+  try {
+    const rows = await kx.select({ id: 'id', title: 'title' }).from('samples').orderBy('id', 'asc');
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to load samples' });
+  }
 });
 
 app.listen(PORT, () => {
