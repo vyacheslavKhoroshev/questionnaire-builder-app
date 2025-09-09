@@ -4,8 +4,7 @@ WORKDIR /app
 ENV NODE_ENV=development
 COPY package.json package-lock.json ./
 COPY apps/backend/package.json apps/backend/package.json
-
-RUN test -f apps/frontend/package.json || true
+COPY apps/frontend/package.json apps/frontend/package.json
 COPY packages/packages.ts packages/packages.ts
 COPY packages/libs packages/libs
 COPY packages/tsconfig.json packages/tsconfig.json
@@ -34,6 +33,7 @@ RUN npm prune --omit=dev
 ENV PORT=3000
 EXPOSE 3000
 
-CMD ["sh", "-c", "node apps/backend/dist/db/scripts/migrate.js && node apps/backend/dist/db/scripts/seed.js && node apps/backend/dist/index.js"]
+ENV RUN_SEEDS=false
+CMD ["node", "apps/backend/dist/index.js"]
 
 

@@ -41,6 +41,23 @@ app.get('*', (_req, res) => {
   res.sendFile(path.join(frontendDist, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`API listening on http://localhost:${PORT}`);
+async function bootstrap(): Promise<void> {
+  try {
+    await kx.migrate.latest();
+    if (process.env.RUN_SEEDS === 'true') {
+      await kx.seed.run();
+    }
+  } catch (err) {
+    console.error('Migration/seed failed:', err);
+    process.exit(1);
+  }
+
+  app.listen(PORT, () => {
+    console.log(`API listening on http://localhost:${PORT}`);
+  });
+}
+
+bootstrap().catch((err) => {
+  console.error(err);
+  process.exit(1);
 });
