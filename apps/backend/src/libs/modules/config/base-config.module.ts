@@ -16,7 +16,7 @@ class BaseConfig {
     const APP_PORT = Number(env.PORT ?? 3001);
     const APP_CORS_ORIGINS = env.CORS_ORIGINS ?? '';
 
-    const DATABASE_URL = env.DATABASE_URL ?? '';
+    const DATABASE_PUBLIC_URL = env.DATABASE_PUBLIC_URL ?? '';
     const DB_POOL_MIN = Number(env.DB_POOL_MIN ?? 0);
     const DB_POOL_MAX = Number(env.DB_POOL_MAX ?? 10);
 
@@ -28,7 +28,7 @@ class BaseConfig {
         CORS_ORIGINS: APP_CORS_ORIGINS,
       },
       DB: {
-        URL: DATABASE_URL,
+        URL: DATABASE_PUBLIC_URL,
         POOL_MIN: DB_POOL_MIN,
         POOL_MAX: DB_POOL_MAX,
       },

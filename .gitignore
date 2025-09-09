@@ -1,0 +1,9 @@
+**/node_modules/
+**/*.tsbuildinfo
+**/dist/
+**/build/
+.env
+**/.env
+**/.env.*
+!**/.env.example
+.vscode/
