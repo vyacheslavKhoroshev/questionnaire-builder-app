@@ -31,12 +31,9 @@ app.get('/samples', async (_req, res) => {
     res.status(500).json({ error: 'Failed to load samples' });
   }
 });
-
-// Serve frontend static build
 const frontendDist = path.resolve(process.cwd(), 'apps/frontend/dist');
 app.use(express.static(frontendDist));
 
-// SPA fallback to index.html
 app.get('*', (_req, res) => {
   res.sendFile(path.join(frontendDist, 'index.html'));
 });

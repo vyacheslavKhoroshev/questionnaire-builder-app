@@ -34,6 +34,6 @@ ENV PORT=3000
 EXPOSE 3000
 
 ENV RUN_SEEDS=false
-CMD ["node", "apps/backend/dist/index.js"]
+CMD ["node", "apps/backend/dist/src/index.js"]
 
 
