@@ -1,0 +1,20 @@
+{
+  "name": "questionnaire-builder-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "questionnaire-builder monorepo: React frontend, Node backend, shared packages",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w apps/frontend",
+    "dev:backend": "npm run dev -w apps/backend",
+    "dev:frontend": "npm run dev -w apps/frontend",
+    "build": "npm -ws run build",
+    "start": "npm run start -w apps/backend"
+  },
+  "devDependencies": {
+    "typescript": "5.5.4"
+  }
+}
