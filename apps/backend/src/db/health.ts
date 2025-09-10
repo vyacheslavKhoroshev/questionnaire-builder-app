@@ -1,4 +1,4 @@
-import { dbPool } from './pool';
+import { dbPool } from './pool.js';
 
 export async function checkDatabaseConnection(): Promise<boolean> {
   try {

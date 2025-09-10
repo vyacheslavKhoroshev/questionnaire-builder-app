@@ -1,3 +1,3 @@
-export { dbPool } from './pool';
-export { kx } from './knex';
-export { checkDatabaseConnection } from './health';
+export { dbPool } from './pool.js';
+export { kx } from './knex.js';
+export { checkDatabaseConnection } from './health.js';

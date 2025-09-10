@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'node:path';
 import cors from 'cors';
 import { checkDatabaseConnection, kx } from './db/index.js';
-import { config } from './libs/modules/config/config';
+import { config } from './libs/modules/config/config.js';
 
 const app = express();
 const corsOriginsRaw = config.ENV.APP.CORS_ORIGINS ?? '';

@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { config } from '../libs/modules/config/config';
+import { config } from '../libs/modules/config/config.js';
 
 const { Pool } = pg;
 
